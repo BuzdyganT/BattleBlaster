@@ -29,4 +29,18 @@ void ABattleBlasterGameMode::BeginPlay()
 		UE_LOG(LogTemp,Error,TEXT("PlayerPawn not found"));
 	}
 	
+	int32 LoopIndex = 0;
+	
+	while (LoopIndex < TowerCount)
+	{
+		if (AActor* TowerActor = Towers[LoopIndex])
+		{
+			if (ATower* Tower = Cast<ATower>(TowerActor))
+			{
+				Tower->Tank = Tank;
+				UE_LOG(LogTemp,Log,TEXT("Tower:%s"),*Tower->GetActorNameOrLabel());
+			}
+		}
+		LoopIndex++;
+	}
 }
