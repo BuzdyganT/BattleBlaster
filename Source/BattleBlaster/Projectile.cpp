@@ -3,6 +3,8 @@
 
 #include "Projectile.h"
 
+#include "DataWrappers/ChaosVDParticleDataWrapper.h"
+
 // Sets default values
 AProjectile::AProjectile()
 {
@@ -11,7 +13,10 @@ AProjectile::AProjectile()
 	
 	ProjectileMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("ProjectileMesh"));
 	SetRootComponent(ProjectileMesh);
+	ProjectileMovementComp = CreateDefaultSubobject<UProjectileMovementComponent>("ProjectileMovementComp");
 
+	ProjectileMovementComp->InitialSpeed = 1000.0f;
+	ProjectileMovementComp->MaxSpeed = 1000.0f;
 }
 
 // Called when the game starts or when spawned
