@@ -46,4 +46,9 @@ void ABasePawn::Fire()
 	
 }
 
+void ABasePawn::HandleDestruction()
+{
+	UE_LOG(LogTemp,Display,TEXT("BasePawn handle Destruction"));
+}
+
 

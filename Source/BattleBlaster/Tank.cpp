@@ -79,3 +79,12 @@ void ATank::TurnInput(const FInputActionValue& Value)
 	DeltaRotation.Yaw = TurnRate * InputValue * GetWorld()->GetDeltaSeconds();
 	AddActorLocalRotation(DeltaRotation, true);
 }
+
+void ATank::HandleDestruction()
+{
+	Super::HandleDestruction();
+	
+	UE_LOG(LogTemp,Log,TEXT("Tank Handle Destruction"));
+}
+
+

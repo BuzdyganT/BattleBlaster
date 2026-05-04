@@ -38,4 +38,5 @@ public:
 	
 	void Fire();
 	
+	void HandleDestruction();
 };
