@@ -5,6 +5,7 @@
 
 #include "DataWrappers/ChaosVDParticleDataWrapper.h"
 #include "Kismet/GameplayStatics.h"
+#include "Tower.h"
 
 // Sets default values
 AProjectile::AProjectile()
@@ -52,7 +53,13 @@ void AProjectile::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, U
 	{
 		if (OtherActor && OtherActor != MyOwner && OtherActor != this)
 		{
-			UGameplayStatics::ApplyDamage(OtherActor, Damage, MyOwner->GetInstigatorController(), this, UDamageType::StaticClass());
+			const bool bOwnerIsTower = MyOwner->IsA<ATower>();
+			const bool bHitActorIsTower = OtherActor->IsA<ATower>();
+
+			if (!(bOwnerIsTower && bHitActorIsTower))
+			{
+				UGameplayStatics::ApplyDamage(OtherActor, Damage, MyOwner->GetInstigatorController(), this, UDamageType::StaticClass());
+			}
 			
 			if (HitParticles)
 			{
